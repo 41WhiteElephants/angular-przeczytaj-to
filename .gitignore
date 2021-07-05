@@ -1,0 +1,17 @@
+# OSX
+.DS_Store
+.env
+front.env
+
+# Editors
+*.sublime-project
+*.sublime-workspace
+.vscode/settings.json
+.idea/
+
+#  Javascript
+node_modules
+coverage
+yarn-error.log
+jsconfig.json
+package-lock.json
