@@ -3,6 +3,10 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "crypto": [
+        "/Users/jakubhurej/Documents/angular-essentials/inz/angular-przeczytaj-to/node_modules/crypto-js"
+      ]},
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -15,7 +19,8 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false
