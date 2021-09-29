@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   isLoading = false;
+  // todo: add switch for signup
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
     if (form.invalid){
       return;
     }
+    console.log(form.value);
 
   }
 }
