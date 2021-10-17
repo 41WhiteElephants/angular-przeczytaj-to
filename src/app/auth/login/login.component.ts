@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
@@ -9,15 +9,26 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  didFail = false;
   isLoading = false;
-  constructor(public authService: AuthService) { }
-
-  ngOnInit(): void {
+  constructor(private authService: AuthService) {
   }
+  
+  ngOnInit() {
+    this.authService.authIsLoading.subscribe(
+      (isLoading: boolean) => this.isLoading = isLoading
+    );
+    this.authService.authDidFail.subscribe(
+      (didFail: boolean) => this.didFail = didFail
+    );
+  }
+
   onLogin(form: NgForm) {
     if (form.invalid){
-      return;
+          return;
     }
-
+    const userName = form.value.username;
+    const password = form.value.password;
+    this.authService.signIn(userName, password);
   }
 }
