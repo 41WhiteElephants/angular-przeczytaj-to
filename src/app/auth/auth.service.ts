@@ -68,12 +68,32 @@ export class AuthService {
         this.router.navigate(['/']);
     });
   }
-  signIn(username: string, password: string): void {
+  signIn(email: string, password: string): void {
     this.authIsLoading.next(true);
     const authData = {
-      Username: username,
+      Username: email,
       Password: password
     };
+    const authDetails = new AuthenticationDetails(authData);
+    const userData = {
+      Username: email,
+      Pool: userPool
+    };
+    const cognitoUser = new CognitoUser(userData);
+    const _this = this;
+    cognitoUser.authenticateUser(authDetails, {
+      onSuccess (result: CognitoUserSession) {
+        _this.authStatusChanged.next(true);
+        _this.authDidFail.next(false);
+        _this.authIsLoading.next(false);
+        console.log(result);
+      },
+      onFailure (err) {
+        _this.authDidFail.next(true);
+        _this.authIsLoading.next(false);
+        console.log(err);
+      }
+    });
     this.authStatusChanged.next(true);
     return;
   }

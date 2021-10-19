@@ -27,8 +27,9 @@ export class LoginComponent implements OnInit {
     if (form.invalid){
           return;
     }
-    const userName = form.value.username;
+    const email = form.value.email;
     const password = form.value.password;
-    this.authService.signIn(userName, password);
+    console.log(email, password);
+    this.authService.signIn(email, password);
   }
 }
