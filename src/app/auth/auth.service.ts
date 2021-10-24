@@ -65,7 +65,7 @@ export class AuthService {
         }
         this.authDidFail.next(false);
         this.authIsLoading.next(false);
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
     });
   }
   signIn(email: string, password: string): void {
@@ -86,37 +86,35 @@ export class AuthService {
         _this.authStatusChanged.next(true);
         _this.authDidFail.next(false);
         _this.authIsLoading.next(false);
-        console.log(result);
+        console.log("success",result);
+        _this.router.navigate(['/dashboard']);
       },
       onFailure (err) {
         _this.authDidFail.next(true);
         _this.authIsLoading.next(false);
-        console.log(err);
+        console.log("error",err);
       }
     });
-    this.authStatusChanged.next(true);
+    // imho redundant
+    // this.authStatusChanged.next(true);
     return;
   }
   getAuthenticatedUser() {
+    return userPool.getCurrentUser();
   }
   logout() {
+    this.getAuthenticatedUser().signOut();
     this.authStatusChanged.next(false);
   }
-  isAuthenticated(): Observable<boolean> {
+  isAuthenticated(): boolean{
     const user = this.getAuthenticatedUser();
-    const obs = Observable.create((observer) => {
-      if (user!== null) {
-        observer.next(false);
-      } else {
-        observer.next(false);
-      }
-      observer.complete();
-    });
-    return obs;
+    if (user!== null) {
+      return true}
+    return false
   }
-  initAuth() {
-    this.isAuthenticated().subscribe(
-      (auth) => this.authStatusChanged.next(auth)
-    );
-  }
+  // initAuth() {
+  //   this.isAuthenticated().subscribe(
+  //     (auth) => this.authStatusChanged.next(auth)
+  //   );
+  // }
 }

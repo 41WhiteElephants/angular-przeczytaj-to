@@ -5,12 +5,15 @@ import { LoginComponent } from "./auth/login/login.component";
 import { GenerateAudioComponent } from "./generate-audio/generate-audio.component";
 import { LandingComponent } from "./landing/landing.component";
 import { AuthGuard } from './auth/auth-guard.service';
+import { DashboardComponent } from "./dashboard/dashboard.component";
 
 
 const routes :Routes = [
 {path:'', component: LandingComponent},
-// {path: 'generuj', canActivate: [AuthGuard],  component :GenerateAudioComponent},
+{path: 'generuj', canActivate: [AuthGuard],  component :GenerateAudioComponent},
 {path: 'login', component :LoginComponent},
+{path: 'dashboard', canActivate: [AuthGuard], component :DashboardComponent},
+{path: 'dashboard',  component :DashboardComponent},
 // todo: add registration
 // {path: 'rejestruj', component :SignupComponent}
 ];
@@ -18,7 +21,7 @@ const routes :Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
-    // providers: [AuthGuard]
+    providers: [AuthGuard]
 
 })
 export class AppRoutingModule{}

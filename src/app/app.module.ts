@@ -20,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthService } from './auth/auth.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AuthService } from './auth/auth.service';
     FooterComponent,
     GenerateAudioComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    DashboardComponent
   ],
   imports: [
     AppRoutingModule,
