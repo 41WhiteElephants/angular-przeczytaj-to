@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTableModule} from '@angular/material/table';
 
 
 import { AppComponent } from './app.component';
@@ -43,7 +44,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatInputModule,
     MatMenuModule,
     MatToolbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTableModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

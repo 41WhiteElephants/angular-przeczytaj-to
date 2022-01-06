@@ -10,6 +10,9 @@ export class GenerateAudioComponent implements OnInit {
 
   onGenerateAudio(){
     console.log(this.inputText)
+    //call lambda and add username to JSON
+    //change sagemaker to save files as a date_random_string.mp3
+    //change sagemaker to write data (username, s3_file_name) to dynamo_db
   }
   constructor() { }
 

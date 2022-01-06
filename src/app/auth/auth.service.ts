@@ -108,6 +108,7 @@ export class AuthService {
   }
   isAuthenticated(): boolean{
     const user = this.getAuthenticatedUser();
+    console.log(user)
     if (user!== null) {
       return true}
     return false
