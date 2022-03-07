@@ -1,16 +1,21 @@
 <div>
     <app-generate-audio></app-generate-audio>
     <br>
+    <h1>Twoje nagrania</h1>
     <table mat-table [dataSource]="recordingsData" class="mat-elevation-z8">
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
       
-
+         <!-- Filename Column -->
+         <ng-container matColumnDef="Lp">
+          <th mat-header-cell *matHeaderCellDef> Lp </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
         <!-- Filename Column -->
         <ng-container matColumnDef="Nagrania">
-          <th mat-header-cell *matHeaderCellDef> Nagrania </th>
-          <td mat-cell *matCellDef="let element"> {{element.Filename}} </td>
+          <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+          <td mat-cell *matCellDef="let element"> {{element.filename}} </td>
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
