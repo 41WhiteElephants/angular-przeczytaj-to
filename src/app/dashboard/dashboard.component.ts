@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
 import 'rxjs/add/operator/map';
+import { S3Client, GetObjectCommand, GetObjectCommandOutput } from "@aws-sdk/client-s3";
+import { saveAs } from 'file-saver';
 
 export interface RecordingData {
   id: number
@@ -39,10 +41,29 @@ export class DashboardComponent implements OnInit {
       let recordingsData: RecordingData[] = filenames.map((item, idx) =>{
         return {id: ++idx, filename: item}
       });
-      console.log("data " + recordingsData);
       this.recordingsData = new MatTableDataSource(recordingsData);
-      console.log(this.recordingsData);
     })
+  }
+
+  async downloadFromS3(filename: string){
+    
+    const s3Client = new S3Client({
+      credentials: {
+      accessKeyId: "AKIAXT3BVRFHDAKMU6WW",
+      secretAccessKey: "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",
+      },
+      region: "us-east-1"
+    });        
+    const command = new GetObjectCommand({        
+      Bucket: "aws-linux-academy-2k10-ml-sagemaker",
+      Key: filename,
+    });
+    console.log("download"+ filename);
+    const s3Item = await s3Client.send(command);
+    const blob = new Blob([s3Item.Body as BlobPart], {
+      type: "audio/wav",
+    });
+    saveAs(blob, filename);
   }
 
 }
