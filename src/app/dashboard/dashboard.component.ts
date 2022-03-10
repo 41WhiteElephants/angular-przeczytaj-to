@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
 import 'rxjs/add/operator/map';
-import { config, SecretsManager, S3 , CognitoIdentityCredentials} from 'aws-sdk';
+import { S3} from 'aws-sdk';
 import { saveAs } from 'file-saver';
 
 export interface RecordingData {

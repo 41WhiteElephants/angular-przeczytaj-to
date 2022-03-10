@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import {CognitoUserAttribute, CognitoUser, CognitoUserPool, AuthenticationDetails, CognitoUserSession} from 'amazon-cognito-identity-js';
 import { Subject } from 'rxjs/Subject';
 
-import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { User } from './user.model';
@@ -95,8 +94,6 @@ export class AuthService {
         console.log("error",err);
       }
     });
-    // imho redundant
-    // this.authStatusChanged.next(true);
     return;
   }
   getAuthenticatedUser() {
@@ -113,9 +110,4 @@ export class AuthService {
       return true}
     return false
   }
-  // initAuth() {
-  //   this.isAuthenticated().subscribe(
-  //     (auth) => this.authStatusChanged.next(auth)
-  //   );
-  // }
 }
