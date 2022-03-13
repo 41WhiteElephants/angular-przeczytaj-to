@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ViewChild, OnInit } from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
   recordingsData: MatTableDataSource<RecordingData>;
   displayedColumns: string[] = ['Lp','Nagrania'];
   constructor(private http: HttpClient, private authService: AuthService) { }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit(): void {
     let username = this.authService.getAuthenticatedUser()["username"];
@@ -32,16 +34,17 @@ export class DashboardComponent implements OnInit {
     const requestOptions = {                                                                                                                                                                                 
       headers: new HttpHeaders(headerDict), 
     };
+    const request_body = {
+      "username": username,
+    }
     this.http.post(
       'https://y62narsvga.execute-api.us-east-1.amazonaws.com/dev/fetch_user_recordings',
-      {"username": username}, requestOptions
+      request_body, requestOptions
     ).toPromise().then(data => {
       
-      let filenames = data["Items"][0]["Filenames"]
-      let recordingsData: RecordingData[] = filenames.map((item, idx) =>{
-        return {id: ++idx, filename: item}
-      });
+      let recordingsData: RecordingData[] = data["recordingsData"]
       this.recordingsData = new MatTableDataSource(recordingsData);
+      this.recordingsData.paginator = this.paginator;
     })
   }
 

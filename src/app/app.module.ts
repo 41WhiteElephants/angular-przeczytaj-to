@@ -22,6 +22,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthService } from './auth/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatMenuModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
