@@ -33,6 +33,7 @@ export class GenerateAudioComponent implements OnInit {
     console.log(result)
     alert("Sukces! Twoje nagranie pojawi się niedługo na liście.")
     this.inputText = ""
+    window.location.reload()
 
     //TODO: add service to refresh recording list and subscribe
 
