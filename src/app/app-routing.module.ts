@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import {RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "./auth/login/login.component";
-// import { SignupComponent } from "./auth/signup/signup.component";
+import { SignupComponent } from "./auth/signup/signup.component";
 import { GenerateAudioComponent } from "./generate-audio/generate-audio.component";
 import { LandingComponent } from "./landing/landing.component";
 import { AuthGuard } from './auth/auth-guard.service';
@@ -14,8 +14,7 @@ const routes :Routes = [
 {path: 'login', component :LoginComponent},
 {path: 'dashboard', canActivate: [AuthGuard], component :DashboardComponent},
 {path: 'dashboard',  component :DashboardComponent},
-// todo: add registration
-// {path: 'rejestruj', component :SignupComponent}
+{path: 'rejestruj', component :SignupComponent}
 ];
 
 @NgModule({

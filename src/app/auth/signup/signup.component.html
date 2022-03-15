@@ -1,19 +1,19 @@
 <mat-card>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     <form (submit)="onSignup(SigupForm)" *ngIf="!isLoading" #SigupForm="ngForm">
-        <mat-form-field>
+        <mat-form-field *ngIf="!activationFormOn">
             <input 
             matInput 
             type="text" 
             name="username" 
             ngModel 
-            placeholder="username" 
+            placeholder="Username" 
             #emailInput="ngModel"
             required
             >
             <mat-error *ngIf="emailInput.invalid"> Please provide a valid username!</mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field *ngIf="!activationFormOn">
             <input 
             matInput 
             type="email" 
@@ -25,7 +25,7 @@
             email>
             <mat-error *ngIf="emailInput.invalid"> Please provide a valid email!</mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field *ngIf="!activationFormOn">
             <input 
             matInput 
             type="password"
@@ -36,7 +36,22 @@
             required>
             <mat-error *ngIf="passwordInput.invalid"> Please enter a valid password!</mat-error>
         </mat-form-field>
-    <button mat-raised-button color="accent" type="submit">Zarejestruj się</button>
-
+    <button
+        *ngIf="!activationFormOn"
+        mat-raised-button color="accent" type="submit"
+    >
+    Zarejestruj się
+    </button>
+    <button
+        *ngIf="activationFormOn"
+        mat-raised-button color="accent" type="submit"
+    >
+        Aktywuj konto
+    </button>
+       
     </form>
+    <mat-checkbox class="example-margin" [(ngModel)]="activationFormOn">
+                Jestem zarejestowany, chcę użyć kodu aktywacyjnego
+    </mat-checkbox>
+     
 </mat-card>

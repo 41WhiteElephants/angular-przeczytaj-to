@@ -7,3 +7,6 @@ mat-form-field
 mat-spinner{
     margin:auto;    
 }
+.mat-button-wrapper{
+    margin: 4 px;
+}

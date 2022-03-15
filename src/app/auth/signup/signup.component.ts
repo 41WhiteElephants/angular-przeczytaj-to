@@ -9,9 +9,13 @@ import { AuthService } from '../auth.service';
 })
 export class SignupComponent implements OnInit {
   isLoading = false;
+  activationFormOn = false;
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+  switchToActivationForm(){
+    this.activationFormOn = !this.activationFormOn;
   }
   onSignup(form: NgForm) {
     if (form.invalid){
