@@ -52,7 +52,7 @@
             type="text" 
             name="username" 
             ngModel 
-            placeholder="Username" 
+            placeholder="Nazwa użytkownika" 
             #emailInput="ngModel"
             required
             >
@@ -63,7 +63,7 @@
             type="text" 
             name="activationCode" 
             ngModel 
-            placeholder="Activation Code" 
+            placeholder="Kod aktywacyjny" 
             required
             >
         </mat-form-field>
@@ -72,6 +72,7 @@
         </button>
        
     </form>
+    
     <mat-checkbox [(ngModel)]="activationFormOn">
                 Jestem zarejestowany, chcę użyć kodu aktywacyjnego
     </mat-checkbox>
