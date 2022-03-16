@@ -24,8 +24,13 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   username: string; 
 
+  ngAfterViewInit() {
+    this.ngOnInit()
+  }
+
   ngOnInit(): void {
     this.username = this.authService.getAuthenticatedUser()["username"];
+
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
