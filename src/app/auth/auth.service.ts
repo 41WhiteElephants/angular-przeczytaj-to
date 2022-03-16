@@ -40,6 +40,7 @@ export class AuthService {
         if(err){
             this.authDidFail.next(true);
             this.authIsLoading.next(false);
+            console.log("error", err)
             return
         }
         this.authDidFail.next(false);
@@ -60,6 +61,7 @@ export class AuthService {
         if(err){
             this.authDidFail.next(true);
             this.authIsLoading.next(false);
+            alert("Niepoprawny kod!")
             return
         }
         this.authDidFail.next(false);
@@ -92,6 +94,7 @@ export class AuthService {
         _this.authDidFail.next(true);
         _this.authIsLoading.next(false);
         console.log("error",err);
+        alert("Niepoprawne dane!")
       }
     });
     return;

@@ -14,14 +14,15 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  switchToActivationForm(){
-    this.activationFormOn = !this.activationFormOn;
+  onRegistrationConfirm(form: NgForm) {
+    this.authService.confirmUser(form.value.username, form.value.activationCode)
   }
   onSignup(form: NgForm) {
     if (form.invalid){
       return;
     }
     this.authService.signUp(form.value.username, form.value.email, form.value.password);
+    alert("Wysłaliśmy kod aktywacyjny na podany adres e-mail!")
 
   }
 }

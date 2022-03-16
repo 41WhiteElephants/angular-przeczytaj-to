@@ -22,9 +22,10 @@ export class DashboardComponent implements OnInit {
   displayedColumns: string[] = ['Lp','Nagrania'];
   constructor(private http: HttpClient, private authService: AuthService) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  username: string; 
 
   ngOnInit(): void {
-    let username = this.authService.getAuthenticatedUser()["username"];
+    this.username = this.authService.getAuthenticatedUser()["username"];
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -35,7 +36,7 @@ export class DashboardComponent implements OnInit {
       headers: new HttpHeaders(headerDict), 
     };
     const request_body = {
-      "username": username,
+      "username": this.username,
     }
     this.http.post(
       'https://y62narsvga.execute-api.us-east-1.amazonaws.com/dev/fetch_user_recordings',
