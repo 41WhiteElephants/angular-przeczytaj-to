@@ -40,12 +40,15 @@ export class AuthService {
         if(err){
             this.authDidFail.next(true);
             this.authIsLoading.next(false);
-            console.log("error", err)
+            console.log("error", err);
+            alert("Błąd! "+err);
             return
         }
         this.authDidFail.next(false);
         this.authIsLoading.next(false);
-        this.registeredUser = result.user;
+        alert("Wysłaliśmy kod aktywacyjny na podany adres e-mail!")
+        // looks redundant
+        this.registeredUser = result.user; 
     })
     return;
   }

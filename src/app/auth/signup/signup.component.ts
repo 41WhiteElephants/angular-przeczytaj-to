@@ -22,7 +22,5 @@ export class SignupComponent implements OnInit {
       return;
     }
     this.authService.signUp(form.value.username, form.value.email, form.value.password);
-    alert("Wysłaliśmy kod aktywacyjny na podany adres e-mail!")
-
   }
 }
