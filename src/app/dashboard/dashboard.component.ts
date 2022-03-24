@@ -66,7 +66,8 @@ export class DashboardComponent implements OnInit {
     };
     bucket.getObject(params, (err:any, data:any) =>{
       if (err) {
-        alert("Failed to retrieve object: " + err)
+        alert("Błąd! Spróbuj ponownie.")
+        console.log("error", err)
       }else{
           const blob = new Blob([data.Body], {
           type: data.ContentType,

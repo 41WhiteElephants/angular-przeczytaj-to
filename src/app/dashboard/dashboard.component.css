@@ -4,3 +4,19 @@ table {
 tr {
     cursor: pointer;
 }
+.greeting{
+    padding: 16px;
+    border-bottom: 1px solid #dfdfdf;
+    /* -webkit-box-shadow: 3px 8px 24px -8px rgba(186, 188, 224, 1);
+-moz-box-shadow: 3px 8px 24px -8px rgba(186, 188, 224, 1);
+box-shadow: 3px 8px 24px -8px rgba(186, 188, 224, 1); */
+    color: #000000DE;
+}
+.table-header{
+    padding: 16px;
+    border-top: 1px solid #dfdfdf;
+    /* -webkit-box-shadow: 3px 8px 24px -8px rgba(186, 188, 224, 1);
+-moz-box-shadow: 3px 8px 24px -8px rgba(186, 188, 224, 1);
+box-shadow: 3px 8px 24px -8px rgba(186, 188, 224, 1); */
+    color: #000000DE;
+}

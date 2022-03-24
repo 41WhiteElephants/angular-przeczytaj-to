@@ -19,6 +19,7 @@ export class AuthService {
   authIsLoading = new BehaviorSubject<boolean>(false);
   authDidFail = new BehaviorSubject<boolean>(false);
   authStatusChanged = new Subject<boolean>();
+  // probably redundant
   registeredUser: CognitoUser;
   constructor(private router: Router) {}
 

@@ -1,8 +1,8 @@
 <div>
-    <h1 [(ngModel)]="username">Witaj {{username}}</h1>
+    <h1 class="greeting"[(ngModel)]="username">Witaj {{username}}</h1>
     <app-generate-audio></app-generate-audio>
     <br>
-    <h1>Twoje nagrania</h1>
+    <h1 class="table-header">Twoje nagrania</h1>
     <table mat-table [dataSource]="recordingsData" class="mat-elevation-z8">
 
         <!--- Note that these columns can be defined in any order.
