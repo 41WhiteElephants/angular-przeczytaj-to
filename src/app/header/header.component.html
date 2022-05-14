@@ -1,14 +1,25 @@
 <mat-toolbar color="primary">
-    <span><a routerLink="/">Przeczytaj.to</a> </span>
+    <span><a routerLink="/">czytaj.io</a> </span>
     <span class="spacer"></span>
-    <!-- <span>
-        <a mat-button routerLink="/generuj" routerLinkActive="mat-accent">Przeczytaj</a>
-    </span> -->
     <span>
-        <a mat-button routerLink="/login" routerLinkActive="mat-accent">Zaloguj się</a>
+        <a mat-button *ngIf="!authService.isAuthenticated()" routerLink="/login" routerLinkActive="mat-accent">Zaloguj się</a>
+        <a mat-button
+            *ngIf="authService.isAuthenticated()"
+            (click) = "authService.logout()"
+            routerLink="/"
+            routerLinkActive="mat-accent"
+        >
+        Wyloguj
+        </a>
     </span>
-    <!-- <span>
-        <a mat-button routerLink="/rejestruj" routerLinkActive="mat-accent">Zarejestruj się</a>
-    </span> -->
+    <span>
+        <a mat-button 
+            *ngIf="!authService.isAuthenticated()" 
+            routerLink="/rejestruj"
+            routerLinkActive="mat-accent"
+        >
+        Zarejestruj się
+        </a>
+    </span>
 </mat-toolbar>
 

@@ -1,13 +1,13 @@
 <mat-card>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
-    <form (submit)="onSignup(SigupForm)" *ngIf="!isLoading" #SigupForm="ngForm">
-        <mat-form-field>
+    <form (submit)="onSignup(SigupForm)" *ngIf="!activationFormOn&&!isLoading" #SigupForm="ngForm">
+        <mat-form-field >
             <input 
             matInput 
             type="text" 
             name="username" 
             ngModel 
-            placeholder="username" 
+            placeholder="Nazwa użytkownika" 
             #emailInput="ngModel"
             required
             >
@@ -19,7 +19,7 @@
             type="email" 
             name="email" 
             ngModel 
-            placeholder="E-mail address" 
+            placeholder="E-mail" 
             #emailInput="ngModel"
             required
             email>
@@ -31,12 +31,50 @@
             type="password"
             name="password" 
             ngModel
-            placeholder="Password"
+            placeholder="Hasło"
             #passwordInput="ngModel"
             required>
             <mat-error *ngIf="passwordInput.invalid"> Please enter a valid password!</mat-error>
         </mat-form-field>
-    <button mat-raised-button color="accent" type="submit">Zarejestruj się</button>
-
+    <button
+        mat-raised-button color="accent" type="submit"
+    >
+    Zarejestruj się
+    </button>
     </form>
+    <form *ngIf="activationFormOn&&!isLoading" 
+        (submit)="onRegistrationConfirm(ConfirmationForm)"
+         #ConfirmationForm="ngForm"
+    >
+        <mat-form-field >
+            <input 
+            matInput 
+            type="text" 
+            name="username" 
+            ngModel 
+            placeholder="Nazwa użytkownika" 
+            #emailInput="ngModel"
+            required
+            >
+        </mat-form-field>
+        <mat-form-field>
+            <input 
+            matInput 
+            type="text" 
+            name="activationCode" 
+            ngModel 
+            placeholder="Kod aktywacyjny" 
+            required
+            >
+        </mat-form-field>
+        <button mat-raised-button color="accent" type="submit">
+        Aktywuj konto
+        </button>
+       
+    </form>
+    
+    <mat-checkbox [(ngModel)]="activationFormOn">
+                Jestem zarejestowany, chcę użyć kodu aktywacyjnego
+    </mat-checkbox>
+     
 </mat-card>

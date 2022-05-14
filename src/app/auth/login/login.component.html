@@ -1,13 +1,13 @@
 <mat-card>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
-    <form (submit)="onLogin(loginForm)" *ngIf="!isLoading" #loginForm="ngForm">
+    <form (submit)="onLogin(loginForm)" *ngIf="!isLoading&&!forgotPasswordFormOn" #loginForm="ngForm">
         <mat-form-field>
             <input 
             matInput 
             type="email" 
             name="email" 
             ngModel 
-            placeholder="E-mail address" 
+            placeholder="E-mail" 
             #emailInput="ngModel"
             required
             email>
@@ -19,7 +19,7 @@
             type="password"
             name="password" 
             ngModel
-            placeholder="Password"
+            placeholder="Hasło"
             #passwordInput="ngModel"
             required>
             <mat-error *ngIf="passwordInput.invalid"> Please enter a valid password!</mat-error>
@@ -27,4 +27,68 @@
     <button mat-raised-button color="accent" type="submit">Zaloguj</button>
 
     </form>
+    <form *ngIf="!isLoading&&forgotPasswordFormOn"
+        (submit)="onConfirmResetPassword(forgotPasswordForm)"
+         #forgotPasswordForm="ngForm"
+    >
+        <mat-form-field >
+            <input 
+            matInput 
+            type="email" 
+            name="email" 
+            ngModel 
+            placeholder="E-mail" 
+            #emailInput="ngModel"
+            required
+            email>
+        </mat-form-field>
+        <mat-form-field *ngIf="codeSent">
+            <input 
+            matInput
+            type="password"
+            name="password" 
+            ngModel 
+            placeholder="Hasło" 
+            required
+            >
+        </mat-form-field>
+        <mat-form-field *ngIf="codeSent">
+            <input 
+            matInput
+            type="password" 
+            name="confirmPassword" 
+            ngModel 
+            placeholder="Powtórz hasło" 
+            required
+            >
+        </mat-form-field>
+        <mat-form-field *ngIf="codeSent">
+            <input 
+            matInput
+            type="text" 
+            name="code" 
+            ngModel 
+            placeholder="Wpisz kod" 
+            required
+            >
+        </mat-form-field>
+        <button 
+            *ngIf="!codeSent"
+            mat-raised-button
+            color="accent"
+            (click)="onResetPassword(forgotPasswordForm.value.email)">Wyślij kod</button>
+        <button *ngIf="codeSent" mat-raised-button color="accent" type="submit">
+        Resetuj hasło
+        </button>
+        <button 
+        *ngIf="codeSent"
+        mat-raised-button
+        color="primary"
+        (click)="onResetPassword(forgotPasswordForm.value.email)">Wyślij kod ponownie</button>  
+       
+    </form>
+    
+    <mat-checkbox [(ngModel)]="forgotPasswordFormOn">
+        Nie pamiętasz hasła?
+</mat-checkbox>
 </mat-card>

@@ -9,15 +9,18 @@ import { AuthService } from '../auth.service';
 })
 export class SignupComponent implements OnInit {
   isLoading = false;
+  activationFormOn = false;
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+  onRegistrationConfirm(form: NgForm) {
+    this.authService.confirmUser(form.value.username, form.value.activationCode)
   }
   onSignup(form: NgForm) {
     if (form.invalid){
       return;
     }
     this.authService.signUp(form.value.username, form.value.email, form.value.password);
-
   }
 }

@@ -2,8 +2,13 @@ mat-form-field
 {
     width: 100%;
 }
-
+mat-card{
+    margin-top: 1rem;;
+}
 
 mat-spinner{
     margin:auto;    
+}
+.mat-button-wrapper{
+    margin: 4 px;
 }
