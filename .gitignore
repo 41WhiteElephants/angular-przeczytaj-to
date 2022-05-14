@@ -15,3 +15,4 @@ coverage
 yarn-error.log
 jsconfig.json
 package-lock.json
+dist/
