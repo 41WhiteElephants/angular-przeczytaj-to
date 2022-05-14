@@ -40,17 +40,18 @@ export class DashboardComponent implements OnInit {
     const requestOptions = {                                                                                                                                                                                 
       headers: new HttpHeaders(headerDict), 
     };
-    const request_body = {
-      "username": this.username,
-    }
-    this.http.post(
-      'https://y62narsvga.execute-api.us-east-1.amazonaws.com/dev/fetch_user_recordings',
-      request_body, requestOptions
+    const url = 
+      `https://y62narsvga.execute-api.us-east-1.amazonaws.com/dev/fetch_user_recordings?username=${this.username}`;
+    
+    this.http.get(
+      url, requestOptions
     ).toPromise().then(data => {
       
       let recordingsData: RecordingData[] = data["recordingsData"]
       this.recordingsData = new MatTableDataSource(recordingsData);
       this.recordingsData.paginator = this.paginator;
+    }).catch(err =>{
+      console.log("error", err);
     })
   }
 

@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 
 import {CognitoUserAttribute, CognitoUser, CognitoUserPool, AuthenticationDetails, CognitoUserSession} from 'amazon-cognito-identity-js';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 import { User } from './user.model';
 import { Router } from "@angular/router";
@@ -19,8 +19,6 @@ export class AuthService {
   authIsLoading = new BehaviorSubject<boolean>(false);
   authDidFail = new BehaviorSubject<boolean>(false);
   authStatusChanged = new Subject<boolean>();
-  // probably redundant
-  registeredUser: CognitoUser;
   constructor(private router: Router) {}
 
   signUp(username: string, email: string, password: string): void {
@@ -48,8 +46,6 @@ export class AuthService {
         this.authDidFail.next(false);
         this.authIsLoading.next(false);
         alert("Wysłaliśmy kod aktywacyjny na podany adres e-mail!")
-        // looks redundant
-        this.registeredUser = result.user; 
     })
     return;
   }
@@ -147,7 +143,6 @@ export class AuthService {
   }
   isAuthenticated(): boolean{
     const user = this.getAuthenticatedUser();
-    console.log(user)
     if (user!== null) {
       return true}
     return false

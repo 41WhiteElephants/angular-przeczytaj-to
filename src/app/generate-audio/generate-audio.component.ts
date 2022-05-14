@@ -16,7 +16,7 @@ export class GenerateAudioComponent implements OnInit {
   async onGenerateAudio(){
     let username = this.authService.getAuthenticatedUser()["username"];
     const params = {
-      FunctionName: 'fetch_tacotron', 
+      FunctionName: 'create_recording', 
       Payload: JSON.stringify({
         'username': username, 
         'text': this.inputText,
@@ -33,7 +33,8 @@ export class GenerateAudioComponent implements OnInit {
     console.log(result)
     alert("Sukces! Twoje nagranie pojawi się niedługo na liście.")
     this.inputText = ""
-    window.location.reload()
+    setTimeout(() => {window.location.reload()}, 2000);
+    
 
     //TODO: add service to refresh recording list and subscribe
 
