@@ -10,3 +10,6 @@ mat-card{
 mat-spinner{
     margin:auto;    
 }
+button{
+    margin-bottom: 0.5rem;
+}
