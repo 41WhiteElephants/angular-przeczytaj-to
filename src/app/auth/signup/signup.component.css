@@ -9,6 +9,9 @@ mat-card{
 mat-spinner{
     margin:auto;    
 }
+button{
+    margin-bottom: 0.5rem;
+}
 .mat-button-wrapper{
     margin: 4 px;
 }
